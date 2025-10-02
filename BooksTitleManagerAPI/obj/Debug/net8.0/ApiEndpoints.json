@@ -15,7 +15,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[BooksTitleManagerAPI.Models.BooksAPIModel, BooksTitleManagerAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BooksTitleManagerAPI.Models.BooksModelApi, BooksTitleManagerAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -35,13 +35,13 @@
     "Parameters": [
       {
         "Name": "book",
-        "Type": "BooksTitleManagerAPI.Models.BooksAPIModel",
+        "Type": "BooksTitleManagerAPI.Models.BooksModelApi",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "BooksTitleManagerAPI.Models.BooksAPIModel",
+        "Type": "BooksTitleManagerAPI.Models.BooksModelApi",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -50,26 +50,5 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "BooksTitleManagerAPI.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[BooksTitleManagerAPI.WeatherForecast, BooksTitleManagerAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "GetWeatherForecast"
   }
 ]

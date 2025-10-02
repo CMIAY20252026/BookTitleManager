@@ -27,7 +27,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/BooksAPIModel"
+                    "$ref": "#/components/schemas/BooksModelApi"
                   }
                 }
               },
@@ -35,7 +35,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/BooksAPIModel"
+                    "$ref": "#/components/schemas/BooksModelApi"
                   }
                 }
               },
@@ -43,7 +43,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/BooksAPIModel"
+                    "$ref": "#/components/schemas/BooksModelApi"
                   }
                 }
               }
@@ -59,17 +59,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BooksAPIModel"
+                "$ref": "#/components/schemas/BooksModelApi"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/BooksAPIModel"
+                "$ref": "#/components/schemas/BooksModelApi"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/BooksAPIModel"
+                "$ref": "#/components/schemas/BooksModelApi"
               }
             }
           }
@@ -80,56 +80,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/BooksAPIModel"
+                  "$ref": "#/components/schemas/BooksModelApi"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BooksAPIModel"
+                  "$ref": "#/components/schemas/BooksModelApi"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BooksAPIModel"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/WeatherForecast": {
-      "get": {
-        "tags": [
-          "WeatherForecast"
-        ],
-        "operationId": "GetWeatherForecast",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
+                  "$ref": "#/components/schemas/BooksModelApi"
                 }
               }
             }
@@ -140,7 +101,7 @@
   },
   "components": {
     "schemas": {
-      "BooksAPIModel": {
+      "BooksModelApi": {
         "required": [
           "title"
         ],
@@ -154,29 +115,6 @@
             "maxLength": 100,
             "minLength": 2,
             "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "WeatherForecast": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "summary": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false

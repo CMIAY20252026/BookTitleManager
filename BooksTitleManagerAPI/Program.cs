@@ -1,4 +1,6 @@
 
+using BooksTitleManagerAPI.Data;
+
 namespace BooksTitleManagerAPI
 {
     public class Program
@@ -13,6 +15,8 @@ namespace BooksTitleManagerAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<BooksTitleManagerContext>();
 
             var app = builder.Build();
 

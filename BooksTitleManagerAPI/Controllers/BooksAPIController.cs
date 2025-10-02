@@ -1,5 +1,7 @@
-﻿using BooksTitleManagerAPI.Models;
+﻿using BooksTitleManagerAPI.Data;
+using BooksTitleManagerAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BooksTitleManagerAPI.Controllers
 {
@@ -7,32 +9,35 @@ namespace BooksTitleManagerAPI.Controllers
     [Route("api/[controller]")]
     public class BooksAPIController : ControllerBase
     {
-        private static readonly List<BooksAPIModel> books = new()
-    {
-        new BooksAPIModel { Id = 1, Title = "The Pragmatic Programmer" },
-        new BooksAPIModel { Id = 2, Title = "Clean Code" },
-        new BooksAPIModel { Id = 3, Title = "Design Patterns" }
-    };
+        private readonly BooksTitleManagerContext _context;
+
+        public BooksAPIController(BooksTitleManagerContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
-        public ActionResult<IEnumerable<BooksAPIModel>> GetBooks([FromQuery] string? search)
+        public async Task<ActionResult<IEnumerable<BooksModelApi>>> GetBooks([FromQuery] string? search)
         {
-            var result = books.AsQueryable();
+            IQueryable<BooksModelApi> query = _context.BooksModelApis;
+
             if (!string.IsNullOrEmpty(search))
             {
-                result = result.Where(b => b.Title.Contains(search, StringComparison.OrdinalIgnoreCase));
+                query = query.Where(b => b.Title.Contains(search));
             }
-            return Ok(result.ToList());
+
+            var result = await query.ToListAsync();
+            return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult<BooksAPIModel> AddBook([FromBody] BooksAPIModel book)
+        public async Task<ActionResult<BooksModelApi>> AddBook([FromBody] BooksModelApi book)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            book.Id = books.Max(b => b.Id) + 1;
-            books.Add(book);
+            _context.BooksModelApis.Add(book);
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetBooks), new { id = book.Id }, book);
         }
