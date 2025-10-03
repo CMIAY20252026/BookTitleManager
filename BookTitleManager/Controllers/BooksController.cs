@@ -34,9 +34,17 @@ namespace BookTitleManager.Controllers
                 return View(book);
             }
 
-            await _bookService.AddBookAsync(book); //ap
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                //throw new UnauthorizedAccessException(); // Force error
+                await _bookService.AddBookAsync(book); //ap
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"An error occurred while adding the book. Please try again.: {ex.Message}");
+                return View(book);
+            }
         }
-
     }
 }
